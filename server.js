@@ -1,12 +1,16 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = 3000;
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server running on http://0.0.0.0:${port}`);
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello, World! This is our CI/CD pipeline demo.This is Anjali's Peoject");
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
 
